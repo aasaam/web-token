@@ -11,6 +11,7 @@
 [![open-issues](https://flat.badgen.net/github/open-issues/aasaam/web-token)](https://github.com/aasaam/web-token/issues)
 [![open-pull-requests](https://flat.badgen.net/github/open-prs/aasaam/web-token)](https://github.com/aasaam/web-token/pulls)
 [![npm](https://flat.badgen.net/npm/v/@aasaam/web-token)](https://www.npmjs.com/package/@aasaam/web-token)
+[![npm](https://flat.badgen.net/npm/types/@aasaam/web-token)](https://www.npmjs.com/package/@aasaam/web-token)
 [![license](https://flat.badgen.net/github/license/aasaam/web-token)](./LICENSE)
 
 Simple implementation for web token without any default payloads for internal micro service usage.
