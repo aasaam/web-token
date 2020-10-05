@@ -50,6 +50,7 @@
   },
   "scripts": {
     "lint": "eslint .",
+    "type-check": "tsc --noEmit",
     "test:cover": "jest --detectOpenHandles --runInBand --collectCoverage",
     "test": "jest --detectOpenHandles --runInBand"
   },
