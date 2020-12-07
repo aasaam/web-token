@@ -1,6 +1,6 @@
 {
   "name": "@aasaam/web-token",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "aasaam simple web token base on hmac for persist/temporary usage.",
   "main": "index.js",
   "types": "index.d.ts",
