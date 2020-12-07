@@ -15,3 +15,13 @@
 [![license](https://flat.badgen.net/github/license/aasaam/web-token)](./LICENSE)
 
 Simple implementation for web token without any default payloads for internal micro service usage.
+
+Key features:
+
+* Try to shorter and friendly tokens **base62** instead of _base64_.
+* Try to be secure even using H256 HMAC.
+* No JWT extra data such as `issuer` and etc.
+
+Use case:
+
+* Thumbnail request token.

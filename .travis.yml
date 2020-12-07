@@ -8,5 +8,6 @@ install:
   - npm install
 script:
   - npm run lint
+  - npm run type-check
   - npm run test:cover
   - cat ./coverage/lcov.info | coveralls

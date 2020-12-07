@@ -9,6 +9,22 @@ declare class Token {
   constructor(key: string);
 
   /**
+   * Encode to base62
+   *
+   * @param {Buffer} buf
+   * @return {string}
+   */
+  static encode(buf: Buffer): string;
+
+  /**
+   * Decode to hex
+   *
+   * @param {string} str
+   * @return {Buffer}
+   */
+  static decode(str: string): Buffer;
+
+  /**
    * Sign data
    *
    * @param {Object|Number|String} data

@@ -11,16 +11,53 @@ const [cpu] = os.cpus();
 
 const objects = [
   1,
-  'foo',
-  { bar: true },
-  [new Date().toString(), Math.random()],
+  {
+    w: Math.round(Math.random() * 1000),
+    h: Math.round(Math.random() * 1000),
+    meta: {
+      title: new Date().toString(),
+      long_description_will: [
+        Math.random().toString(36).substring(2),
+        Math.random().toString(36).substring(2),
+        Math.random().toString(36).substring(2),
+        Math.random().toString(36).substring(2),
+        Math.random().toString(36).substring(2),
+        Math.random().toString(36).substring(2),
+        Math.random().toString(36).substring(2),
+      ],
+    },
+    c: 1,
+    d: 'foo',
+    r: { bar: true },
+    br: [new Date().toString(), Math.random()],
+  },
 ];
 
+const sampleSecret = Math.random().toString(36).substring(2);
+
 describe('Token', () => {
-  const t = new Token(Math.random().toString());
+  it('statics', () => {
+    const buff = Buffer.from(JSON.stringify([objects, objects, objects]));
+    const b64 = Token.encode(buff);
+    const deBuff = Token.decode(b64);
+    expect(buff).toEqual(deBuff);
+  });
+  const t = new Token(sampleSecret);
   it('sign', async () => {
     objects.forEach((o) => {
       const s = t.sign(o);
+      const objectSize = JSON.stringify(o).length;
+      const tokenSize = s.length;
+      const percent = Math.round((tokenSize / objectSize) * 100);
+      log(
+        [
+          `Object for sign is '${JSON.stringify(o)}'`,
+          `Sample token will be '${s}'`,
+          `json length ${objectSize}`,
+          `token length ${tokenSize}`,
+          `Increase size ${percent}%`,
+        ].join('\n'),
+      );
       const v = t.verify(s);
       expect(o).toEqual(v);
     });
@@ -55,7 +92,7 @@ describe('Token', () => {
 });
 
 describe('Benchmark', () => {
-  const t = new Token(Math.random().toString());
+  const t = new Token(sampleSecret);
   const sg = t.signTTL(objects, 60);
   it('sign', () => {
     const t0 = performance.now();
@@ -82,6 +119,7 @@ describe('Benchmark', () => {
     const diff = t1 - t0;
     log(
       [
+        `Key is '${sampleSecret}' and secret will be '${t.key}', try to break`,
         `Call ${times}x verify took ${diff} milliseconds.`,
         `CPU : ${cpu.model} / ${cpu.speed} MHz`,
       ].join('\n'),
